@@ -1,0 +1,58 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>全中文日期显示</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">  
+<meta name="generator" content="editplus">
+<meta name="liyuncheng" content="email:yunchengli@sina.com">
+</head>
+<body bgcolor="#fef4d9">
+<br>
+<br>
+<center><font color=red face="隶书" size=6>全中文日期显示</font></center>
+<center>
+<table border=5 bordercolor=blue borderlight=green>
+<tr><td align=center><font size=5 color=red face="Arial, Helvetica, sans-serif"><strong>下面框中为脚本显示区</strong></font></td></tr>
+<tr><td align=center height=80>
+<script language="JavaScript">
+//将月日值转换为中文文字表示
+function number(index1){
+var numberstring="一二三四五六七八九十";
+  if(index1 ==0) {document.write("十")}
+  if(index1 < 10){
+    document.write(numberstring.substring(0+(index1-1),index1))}
+  else if(index1 < 20 ){
+    document.write("十"+numberstring.substring(0+(index1-11),(index1-10)))}
+  else if(index1 < 30 ){
+    document.write("二十"+numberstring.substring(0+(index1-21),(index1-20)))}
+  else{
+    document.write("三十"+numberstring.substring(0+(index1-31),(index1-30)))}
+  }
+
+var today1 = new Date()
+var year=today1.getFullYear()
+var month = today1.getMonth()+1
+var date = today1.getDate()
+var day = today1.getDay()
+//年数字表示换为中文文字表示
+function chineseYear(){
+var num=new Array("零","一","二","三","四","五","六","七","八","九");  
+str=String(year);
+//年数字分别对应的中文文字
+y1=num[str.charAt(0)]
+y2=num[str.charAt(1)]
+y3=num[str.charAt(2)]
+y4=num[str.charAt(3)]
+document.write(y1+y2+y3+y4);
+  }
+//显示最后结果
+chineseYear()
+document.write("年")
+number(month)
+document.write("月")
+number(date)
+document.write("日")
+</script> 
+</td></tr></table></center>
+</body>
+</html>

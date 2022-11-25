@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水果汇</title>
+  <script>
+    $(document).ready(function () {
+
+      if(location.href.indexOf("#reloaded")==-1){
+        location.href=location.href+"#reloaded";
+        location.reload();
+      }
+    })
+  </script>
+  <style>
+    /* 初始化页面，清除所有元素的内外边距 */
+    *{
+      padding: 0;
+      margin: 0;
+      /* 设置背景颜色为414141 */
+      background-color: #414141;
+    }
+    /* 盒子居中 */
+    div{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      width:200%;
+    }
+    /* 文字渐变效果，文字阴影 */
+    span,h2{
+      text-shadow: 0 0 10px #dfd8d8;
+      background: linear-gradient(135deg,#14ffe9,#ffeb3b,#ff00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: ff 0.9s linear infinite;
+    }
+    @keyframes ff{
+      to{filter: hue-rotate(360deg);}
+    }
+    /* 设置一下字体大小 */
+    h2{
+      font-size: 40px;
+    }
+    span{
+      font-size: 30px;
+      width:150%;
+    }
+    a{
+      text-decoration: none;
+    }
+
+
+    /* 按钮居中 */
+    button{
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100px;
+      height: 45px;
+      box-shadow: 0 0 10px #fff;
+      /* 取消轮廓线 */
+      outline: none;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h2>水果汇</h2>
+  <span id="name"></span>
+</div>
+<button id="button_text">stop</button>
+
+
+<script>
+  // 获取标签
+  let nametxt=document.getElementById('name');
+  let button=document.getElementById('button_text');
+  // 创建一个数组存储名字
+  let uname=['【粒果】晴王相印葡萄','【果切】半熟芒果【黄肉青芒】','【香甜】柿子饼','削皮甘蔗','脆甜冬枣','【果切】杨桃【清热解火】','果切香瓜','巨峰葡萄','【果切】香蕉','【果切】橘子肉','【果切】脆甜柿子','现剥红心柚子肉','【果切】红火龙果','【果切】进口奇异果','【果切】新鲜脐橙【甜】','【果切】红富士苹果','【果切】辣椒青芒','【果切】甜王西瓜','【果切】脆甜雪梨','【果切】香甜牛奶木瓜','【洗净】圣女果','酸辣萝卜','【果切】草莓【酸甜】','【网红小吃】圣女果夹乌梅','【果切】白心番石榴','【果切】无籽小红提','【果切】白心火龙果','【果切】哈密瓜','【果切】秘制青芒','果切酸甜菠萝','【果切】熟芒果','【整果】新鲜橘子','大椰青1个约900g','【整果】新鲜橘子','整果砂糖橘500g','【整个】软籽石榴1个','白心芭乐','红心火龙果','新鲜脐橙','白心火龙果1个约500g','【整个】苹果','【整果】香蕉','配勺子吃的软籽石榴','【整果】脆甜柿子','鲜榨橙汁【纯汁】500ml','鲜榨西瓜汁【纯汁】500ml','鲜榨苹果汁【纯汁】500ml','鲜榨雪梨汁500ml【纯汁】','酸甜李子','腌制青脆李','酸辣萝卜','【果切】酸嘢杨桃','夹开腌制甜油甘果','酸嘢青芒+菠萝+番石榴','酸嘢半生熟芒果','【果切】酸嘢菠萝','【果切】酸嘢番石榴','【果切】酸野芒果条','酸野 腌制果切酸梨','酸野甘草青芒','店家随机搭配','西瓜汁','芒果脆啵啵仙草西米露椰奶捞','椰奶西米露','芒果西米露椰奶','脆啵啵西米露冰粉椰奶捞250g','西米露椰奶捞','手工白冰粉','泰国芒果仙草椰奶捞1碗','椰奶烧仙草1碗','红豆仙草椰奶捞','脆啵啵仙草椰奶捞350g','脆啵啵冰粉椰奶捞','脆啵啵手工白冰粉1碗','燕麦水果捞','草莓+芒果+红火+哈密瓜+菠萝','自选水果捞','纯芒果水果捞','自选水果拼盘','水果沙拉店家搭配','水果沙拉自主搭配','自选水果拼盘','榴莲肉250g','再来一遍'];
+  // 创建一个函数生成随机数字
+  function getrandom(min,max){
+    return Math.floor(Math.random()*(max-min-1)+min);
+  }
+  function clock(){
+    // 通过获取一个随机的数组下标实现随机获取一个名字，并将这个名字赋值给变量random
+    let random=uname[getrandom(0,uname.length-1)];
+    //将random塞到span里
+    nametxt.innerHTML=random;
+  };
+  // 打印名字已经实现了，下一步让没点击按钮前名字一直刷新
+  // 设置不停止时名字的刷新速度为30毫秒
+  let time=self.setInterval("clock()",30);
+  // 将开始与停止按钮绑定到按钮上，并通过按钮控制
+  let flag=false;
+  button.onclick=function(){
+    // 当flag标志为false时，点击按钮让刷新停止；
+    if(flag==false)
+    {
+      time=window.clearInterval(time);
+      // 按钮文字从stop变为start；
+      button.innerHTML='start';
+      // 标志变更
+      flag=true;
+    }else{
+      // 当flag标志为true时，开始刷新，文字变更
+      time=self.setInterval("clock()",30);
+      button.innerHTML='stop';
+      flag=false;
+    }
+  }
+</script>
+<div style="top: 75%;left: 50%;font-size: 25px;"><a href="index1.html" style="text-decoration: none;color: springgreen">返回主页</a></div>
+</body>
+</html>

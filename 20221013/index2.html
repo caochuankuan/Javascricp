@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>yifeng</title>
+</head>
+
+<body>
+请观察下面文字的显示效果
+<table border="2" width="58%" cellpadding="0" cellspacing="1" bordercolorlight="#000000" bgcolor="#808080" height="0">
+	<tr>
+    <td width="100%" align="center"><b>文本框显示打字效果</b></td>
+    </tr>
+    <tr>
+    <td width="100%" height="110">
+<form id="md">
+<p align="center">
+<input type="text" id="mdText" size="60" value=" " style="background-color:#000000;color:#FFFFFF;overflow:auto;">
+</form>
+</td>
+</tr>
+</table>
+<script language="javascript">
+var word="欢迎学习文字由左端逐一弹出的动态文字显示效果。谢谢！";
+var subLen=0;
+var interval=100;
+function Scroll()
+{
+	len=word.length;
+	md.mdText.value=word.substring(0,subLen);
+	subLen++;
+	if(subLen>len)
+	{
+		subLen=1;
+		md.mdText.value=" ";
+		window.setTimeout("Scroll()",interval);
+	}
+	else
+		window.setTimeout("Scroll()",interval);
+}
+	Scroll();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	.main{
+		text-align:center;
+	}
+	.kuan{
+		width:100px;
+	}
+	.box{
+	font-size:18pt;
+	color:#FF66CC;
+	font-family:"黑体";
+	}
+</style>
+<script>
+word="文本框中文字的来回运动效果！";
+var interval=100;
+var  subLen=40;
+var Vel=2;
+Dir=1;
+Pos=subLen;
+subLen-=word.length;
+function Scroll(){
+	Dir==1?Pos-=Vel:Pos+=Vel;
+	if(Pos<1){
+		Dir=0;
+		Pos=1;
+	}
+	if(Pos>subLen){
+		Dir=1;
+		Pos=subLen;
+	}
+	Space="";
+	for(i=1;i<Pos;i++)
+	{
+		Space+=" ";
+	}
+	document.md.mdText.value=Space+word;
+	setTimeout("Scroll()",interval);
+}
+</script>
+</head>
+
+<body onLoad="Scroll()" style="width:720px;height:480px;margin:0 auto;">
+<table class="main" border="1">
+	<tr>
+    	<td colspan="4">个人简介</td>
+    </tr>
+	<tr>
+    	<td class="kuan">姓名</td>
+        <td class="kuan">曹传宽</td>
+        <td class="kuan"><button>确定</button>&nbsp;<button>重置</button></td>
+        <td class="kuan" rowspan="4" height="200px">这里放图片</td>
+    </tr>
+    <tr>
+    	<td class="kuan">性别</td>
+        <td class="kuan">男</td>
+        <td class="kuan"><select><option>男</option><option>女</option></select></td>
+    </tr>
+    <tr>
+    	<td class="kuan">民族</td>
+        <td class="kuan">汉</td>
+        <td class="kuan"><label><input type="checkbox"/>是否少数民族</label></td>
+    </tr>
+    <tr>
+    	<td class="kuan">出生日期</td>
+        <td class="kuan">2001.02.13</td>
+        <td class="kuan"><input type="date"></td>
+    </tr>
+    <tr>
+    	<td colspan="4">
+        <form name="md">
+		<input size="50" name="mdText" class="box">
+		</form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

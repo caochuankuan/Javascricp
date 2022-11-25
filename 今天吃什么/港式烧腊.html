@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北饭港式烧腊</title>
+  <script>
+    $(document).ready(function () {
+
+      if(location.href.indexOf("#reloaded")==-1){
+        location.href=location.href+"#reloaded";
+        location.reload();
+      }
+    })
+  </script>
+  <style>
+    /* 初始化页面，清除所有元素的内外边距 */
+    *{
+      padding: 0;
+      margin: 0;
+      /* 设置背景颜色为414141 */
+      background-color: #414141;
+    }
+    /* 盒子居中 */
+    div{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      width:200%;
+    }
+    /* 文字渐变效果，文字阴影 */
+    span,h2{
+      text-shadow: 0 0 10px #dfd8d8;
+      background: linear-gradient(135deg,#14ffe9,#ffeb3b,#ff00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: ff 0.9s linear infinite;
+    }
+    @keyframes ff{
+      to{filter: hue-rotate(360deg);}
+    }
+    /* 设置一下字体大小 */
+    h2{
+      font-size: 60px;
+    }
+    span{
+      font-size: 50px;
+      width:150%;
+    }
+    a{
+      text-decoration: none;
+    }
+
+
+    /* 按钮居中 */
+    button{
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100px;
+      height: 45px;
+      box-shadow: 0 0 10px #fff;
+      /* 取消轮廓线 */
+      outline: none;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h2>北饭港式烧腊</h2>
+  <span id="name"></span>
+</div>
+<button id="button_text">stop</button>
+
+
+<script>
+  // 获取标签
+  let nametxt=document.getElementById('name');
+  let button=document.getElementById('button_text');
+  // 创建一个数组存储名字
+  let uname=['白切鸡腿饭','双拼饭（自选）','白切鸡','酱油鸡饭','烧鸭腿饭','蜜汁鸡腿饭','蜜汁叉烧饭','蜜汁鸭腿饭','盐焗手撕鸡饭','奥尔良烤鸡排饭','再来一遍'];
+  // 创建一个函数生成随机数字
+  function getrandom(min,max){
+    return Math.floor(Math.random()*(max-min-1)+min);
+  }
+  function clock(){
+    // 通过获取一个随机的数组下标实现随机获取一个名字，并将这个名字赋值给变量random
+    let random=uname[getrandom(0,uname.length-1)];
+    //将random塞到span里
+    nametxt.innerHTML=random;
+  };
+  // 打印名字已经实现了，下一步让没点击按钮前名字一直刷新
+  // 设置不停止时名字的刷新速度为30毫秒
+  let time=self.setInterval("clock()",30);
+  // 将开始与停止按钮绑定到按钮上，并通过按钮控制
+  let flag=false;
+  button.onclick=function(){
+    // 当flag标志为false时，点击按钮让刷新停止；
+    if(flag==false)
+    {
+      time=window.clearInterval(time);
+      // 按钮文字从stop变为start；
+      button.innerHTML='start';
+      // 标志变更
+      flag=true;
+    }else{
+      // 当flag标志为true时，开始刷新，文字变更
+      time=self.setInterval("clock()",30);
+      button.innerHTML='stop';
+      flag=false;
+    }
+  }
+</script>
+<div style="top: 75%;left: 50%;font-size: 25px;"><a href="index1.html" style="text-decoration: none;color: springgreen">返回主页</a></div>
+</body>
+</html>

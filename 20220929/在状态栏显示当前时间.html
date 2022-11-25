@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script language="javascript">
+var timerID=null;
+var timerRunning=false;
+function stopclock(){
+	if (timerRunning)
+	clearTimeout(timerID);
+	timerRunning=false;
+}
+function showtime(){
+	var myDate=new Date();
+	var hours=myDate.getHours();
+	var minutes=myDate.getMinutes();
+	var seconds=myDate.getSeconds();
+	if(hours>5&&hours<=8){
+		tag="早上";
+	}
+	else if(hours>8&&hours<=11){
+		tag="上午";
+	}
+	else if(hours>11&&hours<=13){
+		tag="中午";
+	}
+	else if(hours>13&&hours<=18){
+		tag="下午";
+	}
+	else if(hours>18&&hours<=23){
+		tag="晚上";
+	}
+	else{
+		tag="凌晨";
+	}
+	var timeValue=" "+hours;
+	timeValue+=":"+minutes;
+	timeValue+=":"+seconds;
+	timeValue+=" "+tag;
+	window.status=timeValue;
+	timerID=setTimeout("showtime()",1000);
+	timerRunning=true;
+}
+function startclock(){
+	stopclock();
+	showtime();
+}
+</script>
+</head>
+
+<body onload="startclock()">
+ 注意左下角状态栏,精确到秒
+</body>
+</html>

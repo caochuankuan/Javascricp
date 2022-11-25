@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>yifeng</title>
+<script>
+var word="welcome to my website!";
+var interval=150;
+var position=1,i=0;
+function statusScroll(){
+	window.status=word.substring(0,position);
+	position++;
+	if(position>=word.length)
+	{
+		window.status=word.substring(i,position);
+		i++;
+		if(i==word.length)
+		{
+			position=1;
+			i=0;
+		}
+		setTimeout("statusScroll()",interval);
+	}
+	else{
+		setTimeout("statusScroll()",interval);
+	}
+}
+statusScroll();
+</script>
+</head>
+
+<body>
+请观察在状态栏中文字由左端逐一弹出效果
+</body>
+</html>

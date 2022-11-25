@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南饭美德肯</title>
+  <script>
+    $(document).ready(function () {
+
+      if(location.href.indexOf("#reloaded")==-1){
+        location.href=location.href+"#reloaded";
+        location.reload();
+      }
+    })
+  </script>
+  <style>
+    /* 初始化页面，清除所有元素的内外边距 */
+    *{
+      padding: 0;
+      margin: 0;
+      /* 设置背景颜色为414141 */
+      background-color: #414141;
+    }
+    /* 盒子居中 */
+    div{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      width:200%;
+    }
+    /* 文字渐变效果，文字阴影 */
+    span,h2{
+      text-shadow: 0 0 10px #dfd8d8;
+      background: linear-gradient(135deg,#14ffe9,#ffeb3b,#ff00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: ff 0.9s linear infinite;
+    }
+    @keyframes ff{
+      to{filter: hue-rotate(360deg);}
+    }
+    /* 设置一下字体大小 */
+    h2{
+      font-size: 30px;
+    }
+    span{
+      font-size: 25px;
+      width:150%;
+    }
+    a{
+      text-decoration: none;
+    }
+
+
+    /* 按钮居中 */
+    button{
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100px;
+      height: 45px;
+      box-shadow: 0 0 10px #fff;
+      /* 取消轮廓线 */
+      outline: none;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h2>南饭美德肯</h2>
+  <span id="name"></span>
+</div>
+<button id="button_text">stop</button>
+
+
+<script>
+  // 获取标签
+  let nametxt=document.getElementById('name');
+  let button=document.getElementById('button_text');
+  // 创建一个数组存储名字
+  let uname=['黄金鸡条5根','汉堡+6翅尖+4香骨鸡+中可','YYDS藤椒翅尖（8个）','手枪腿+中可','【9.9福利套餐】','【超值虾饼套餐】','【特惠鸡米花套餐】','香辣鸡腿堡+墨西哥鸡肉卷+中可','香辣鸡腿堡+3个上校鸡块+2个鸡条+1个小鸡腿+中可','8个翅尖+5个小鸡腿+薯条','鸡腿堡+8个翅尖+薯条+中可','川香鸡排+中可','半只鸡+中可','秘制手扒鸡+中可','鸡腿堡+鸡肉卷+网红大鸡块+中可','两个香辣鸡腿堡+薯条+劲爆鸡米花+两杯中可','香辣鸡腿堡+墨西哥鸡肉卷+网红大鸡块+两个香辣小鸡腿+中可','2个奥尔良烤堡+2对奥尔良烤翅+两杯中可','香辣鸡腿堡+薯条+鸡米花+两个双皮奶2个+中可','香辣鸡腿堡+奥尔良烤翅+可乐','香辣鸡腿堡+香辣鸡翅+奥尔良烤翅+中杯可乐','香辣鸡腿堡+2个小翅根+薯条+中可','香辣鸡腿堡+薯条+上校鸡块*3+中可','2个香辣鸡腿堡','1对烤翅+1对辣翅','香辣汉堡+上校鸡块*3+劲爆鸡米花+中可','小堡套餐（汉堡+鸡肉卷+网红鸡块+中可）','香辣鸡腿堡+2个香酥小鸡腿+薯条+中可','忙里偷闲套餐','星选套餐','手扒鸡套餐（手扒鸡+薯条+中可）','堡卷薯套餐','小网红套餐','手扒鸡+可乐','烤翅套餐','明星套餐（汉堡+烤翅+薯条+中可）','辣翅套餐','烤堡套餐','脆皮炸全鸡（2人量）','海内存知己（双人餐）','福星高照（3人套餐）','宝宝长得帅（3人套餐）','双人吃鸡套餐','双人特惠套餐','自选主食','自选副食','自选饮品','再来一遍'];
+  // 创建一个函数生成随机数字
+  function getrandom(min,max){
+    return Math.floor(Math.random()*(max-min-1)+min);
+  }
+  function clock(){
+    // 通过获取一个随机的数组下标实现随机获取一个名字，并将这个名字赋值给变量random
+    let random=uname[getrandom(0,uname.length-1)];
+    //将random塞到span里
+    nametxt.innerHTML=random;
+  };
+  // 打印名字已经实现了，下一步让没点击按钮前名字一直刷新
+  // 设置不停止时名字的刷新速度为30毫秒
+  let time=self.setInterval("clock()",30);
+  // 将开始与停止按钮绑定到按钮上，并通过按钮控制
+  let flag=false;
+  button.onclick=function(){
+    // 当flag标志为false时，点击按钮让刷新停止；
+    if(flag==false)
+    {
+      time=window.clearInterval(time);
+      // 按钮文字从stop变为start；
+      button.innerHTML='start';
+      // 标志变更
+      flag=true;
+    }else{
+      // 当flag标志为true时，开始刷新，文字变更
+      time=self.setInterval("clock()",30);
+      button.innerHTML='stop';
+      flag=false;
+    }
+  }
+</script>
+<div style="top: 75%;left: 50%;font-size: 25px;"><a href="index1.html" style="text-decoration: none;color: springgreen">返回主页</a></div>
+</body>
+</html>

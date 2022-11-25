@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>yifeng</title>
+</head>
+
+<script>
+<!--
+function showTime()
+{
+	myTime=new Date();
+	var monthArray=new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");
+	var dayArray=new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+	year=myTime.getFullYear();
+	date=myTime.getDate();
+	hours=myTime.getHours();
+	minutes=myTime.getMinutes();
+	seconds=myTime.getSeconds();
+	suf="AM";
+	if(hours>12)
+	{
+		suf="PM";
+		hours-=12;
+	}
+	if(hours==0)
+		hours=12;
+	if(minutes<=9)
+		munutes="0"+minutes;
+	if(seconds<=9)
+		seconds="0"+seconds;
+	theTime="<font size=2>今天是：</font><br><font size=4>"+year+"年"+monthArray[myTime.getMonth()]+date+"日"+"&nbsp;&nbsp;"+dayArray[myTime.getDay()]+"</font><br><font size=2>当前时间：</font><br><font size=4 face=Arial>"+hours+":"+minutes+":"+seconds+"&nbsp;&nbsp;&nbsp;"+suf+"</font>";
+	DT.innerHTML=theTime;
+	setTimeout("showTime()",1000);
+}
+-->
+</script>
+
+<body onload="showTime()">
+<span id="DT" style="position:absolute;left:35px;top:15px"></span>
+</body>
+</html>

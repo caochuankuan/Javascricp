@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>yifeng</title>
+<style>
+.box{
+	font-size:18pt;
+	color:#FF66CC;
+	font-family:"黑体";
+}
+</style>
+<script>
+word="文本框中文字的来回运动效果！";
+var interval=100;
+var  subLen=40;
+var Vel=2;
+Dir=1;
+Pos=subLen;
+subLen-=word.length;
+function Scroll(){
+	Dir==1?Pos-=Vel:Pos+=Vel;
+	if(Pos<1){
+		Dir=0;
+		Pos=1;
+	}
+	if(Pos>subLen){
+		Dir=1;
+		Pos=subLen;
+	}
+	Space="";
+	for(i=1;i<Pos;i++)
+	{
+		Space+=" ";
+	}
+	document.md.mdText.value=Space+word;
+	setTimeout("Scroll()",interval);
+}
+</script>
+</head>
+
+<body onLoad="Scroll()" bgcolor="#CCCCCC">
+<center>
+<br>
+<p><font size="4" color="#0000FF" face="华文行楷">请观察下面文本框中文字的跑马灯效果：</font></p>
+<form name="md">
+<input size="50" name="mdText" class="box">
+</form>
+<br></br>
+</center>
+</body>
+</html>

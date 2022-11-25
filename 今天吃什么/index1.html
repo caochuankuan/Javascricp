@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今天吃什么</title>
+    <script>
+        $(document).ready(function () {
+
+            if(location.href.indexOf("#reloaded")==-1){
+                location.href=location.href+"#reloaded";
+                location.reload();
+            }
+        })
+    </script>
+    <style>
+        /* 初始化页面，清除所有元素的内外边距 */
+        *{
+            padding: 0;
+            margin: 0;
+            /* 设置背景颜色为414141 */
+            background-color: #414141;
+        }
+        /* 盒子居中 */
+        div{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+		width:200%;
+        }
+        /* 文字渐变效果，文字阴影 */
+        span,h2{
+        	text-shadow: 0 0 10px #dfd8d8;
+            background: linear-gradient(135deg,#14ffe9,#ffeb3b,#ff00e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: ff 0.9s linear infinite;
+        }
+        @keyframes ff{
+            to{filter: hue-rotate(360deg);}
+        }
+        /* 设置一下字体大小 */
+        h2{
+            font-size: 60px;
+        }
+        .sj{
+            font-size: 25px;
+        }
+        span{
+            font-size: 50px;
+		width:150%;
+        }
+        a{
+            text-decoration: none;
+        }
+
+
+        /* 按钮居中 */
+        button{
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 100px;
+            height: 45px;
+            box-shadow: 0 0 10px #fff;
+            /* 取消轮廓线 */
+            outline: none;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>今天吃什么</h2>
+        <span id="name"></span>
+    </div>
+    <button id="button_text">stop</button>
+
+
+    <script>
+        // 获取标签
+        let nametxt=document.getElementById('name');
+        let button=document.getElementById('button_text');
+        // 创建一个数组存储名字
+        let uname=['北饭 美食研究所','南饭 潮福兴粉面','北饭 港茶室','西餐厅 唯爱轻食','西餐厅 关东煮','北饭 艾味客',
+				'南饭 美德肯','北饭 港式烧腊','北饭 广味肠粉','北饭 老上海混沌','南饭 铁板烧港式饭','南饭 隆江猪脚饭','南饭 肥姐螺蛳粉',
+				'松南光头佬宵夜','美味炸串&章鱼小丸子','随便看看2.0','水果汇','渔小碗','柳州螺蛳粉',
+				'重庆小面','南饭麻辣香锅','南饭私房套餐','兰州拉面'];
+        // 创建一个函数生成随机数字
+        function getrandom(min,max){
+            return Math.floor(Math.random()*(max-min-1)+min);
+        }
+        function clock(){
+            // 通过获取一个随机的数组下标实现随机获取一个名字，并将这个名字赋值给变量random
+            let random=uname[getrandom(0,uname.length-1)];
+            //将random塞到span里
+            nametxt.innerHTML=random;
+        };
+        // 打印名字已经实现了，下一步让没点击按钮前名字一直刷新
+        // 设置不停止时名字的刷新速度为30毫秒
+        let time=self.setInterval("clock()",30);
+        // 将开始与停止按钮绑定到按钮上，并通过按钮控制
+        let flag=false;
+        button.onclick=function(){
+            // 当flag标志为false时，点击按钮让刷新停止；
+            if(flag==false)
+            {
+                time=window.clearInterval(time);
+                // 按钮文字从stop变为start；
+                button.innerHTML='start';
+                //alert("逸风：\n源码参考百度 仅供娱乐使用 请勿用作商业用途\n-------------\n温馨提示：本站结果仅供参考\n温馨提示：本站结果仅供参考\n-------------\n点击下方商家可进入随机抽选具体商家餐品\n点击下方商家可进入随机抽选具体商家餐品\n点击下方商家可进入随机抽选具体商家餐品\n");
+                // 标志变更
+                flag=true;
+            }else{
+                // 当flag标志为true时，开始刷新，文字变更
+                time=self.setInterval("clock()",30);
+                button.innerHTML='stop';
+                flag=false;
+            }
+        }
+    </script>
+    <div class="sj" style="top: 50%;left: 50%;"><a href="唯爱轻食.html" style="color: #14ffe9">唯爱轻食</a>&nbsp;&nbsp;<a href="关东煮.html" style="color: #dfd8d8">关东煮</a>&nbsp;&nbsp;<a href="艾味客.html" style="color: #ffeb3b">艾味客</a></div>
+    <div class="sj" style="top: 55%;left: 50%;"><a href="美食研究所.html" style="color: antiquewhite">美食研究所</a>&nbsp;&nbsp;<a href="潮福兴粉面.html" style="color: aqua">潮福兴粉面</a>&nbsp;&nbsp;<a href="港茶室.html" style="color: beige">港茶室</a></div>
+    <div class="sj" style="top: 60%;left: 50%;"><a href="老上海馄饨.html" style="color: blanchedalmond">老上海混沌</a>&nbsp;&nbsp;<a href="港式烧腊.html" style="color: blue">港式烧腊</a>&nbsp;&nbsp;<a href="广味肠粉.html" style="color: blueviolet">广味肠粉</a></div>
+    <div class="sj" style="top: 65%;left: 50%;"><a href="美德肯.html" style="color: cadetblue">美德肯</a>&nbsp;&nbsp;<a href="铁板烧港式饭.html" style="color: coral">铁板烧港式饭</a>&nbsp;&nbsp;<a href="隆江猪脚饭.html" style="color: darkcyan">隆江猪脚饭</a></div>
+    <div class="sj" style="top: 70%;left: 50%;"><a href="肥姐螺蛳粉.html" style="color: chartreuse">肥姐螺蛳粉</a>&nbsp;&nbsp;<a href="光头佬宵夜.html" style="color: darkkhaki">松南光头佬宵夜</a>&nbsp;&nbsp;</div>
+    <div class="sj" style="top: 75%;left: 50%;"><a href="随便看看.html" style="color: dodgerblue">随便看看2.0</a>&nbsp;&nbsp;<a href="兰州拉面.html" style="color: forestgreen">兰州拉面</a>&nbsp;&nbsp;<a href="渔小碗.html" style="color: greenyellow">渔小碗</a></div>
+    <div class="sj" style="top: 80%;left: 50%;"><a href="柳州螺蛳粉.html" style="color: lightgreen">柳州螺蛳粉</a>&nbsp;&nbsp;<a href="重庆小面.html" style="color: olive">重庆小面</a>&nbsp;&nbsp;<a href="麻辣香锅.html" style="color: orangered">麻辣香锅</a></div>
+    <div class="sj" style="top: 85%;left: 50%;"><a href="私房套餐.html" style="color: lightskyblue">私房套餐</a>&nbsp;&nbsp;<a href="水果汇.html" style="color: yellow">水果汇</a>&nbsp;&nbsp;<a href="美味炸串.html" style="color: darkseagreen">美味炸串</a></div>
+</body>
+</html>
